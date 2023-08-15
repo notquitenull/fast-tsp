@@ -63,9 +63,9 @@ Tour find_tour_from_points(const IntMatrix points, int mode, const float duratio
     dist.resize(n);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < i; j++) {
-            dx = points[i][0] - points[j][0];
-            dy = points[i][1] - points[j][1];
-            dist[i][j] = sqrt(dx*dx + dy*dy)
+            float dx = points[i][0] - points[j][0];
+            float dy = points[i][1] - points[j][1];
+            dist[i][j] = (uint_fast16_t)sqrt(dx*dx + dy*dy)
         }
     }
 
