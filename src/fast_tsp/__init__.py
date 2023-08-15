@@ -31,6 +31,7 @@ import numpy as np
 from ._core import (  # type: ignore
     # __doc__,
     __version__,
+    find_tour_from_points as __find_tour_from_points,
     find_tour as __find_tour,
     is_valid_tour as __is_valid_tour,
     compute_cost as __compute_cost,
