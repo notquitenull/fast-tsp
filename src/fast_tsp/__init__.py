@@ -128,6 +128,7 @@ def find_tour_from_points(points: PointMatrix, mode: int = 2, duration_seconds: 
       mode = 0 (sequential travel)
              1 (parallel travel)
              2 (euclidian distance) [DEFAULT]
+
       tour = fast_tsp.find_tour_from_points(points)
       print(tour)
       # [0, 1]
