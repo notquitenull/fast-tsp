@@ -43,7 +43,39 @@ void swap_adj_seg(uint_fast16_t n, Tour& tour, uint_fast16_t* position, uint_fas
 Tour greedy_nearest_neighbor(const IntMatrix& dist);
 uint_fast32_t compute_cost(uint_fast16_t n, const Tour& tour, const IntMatrix& dists);
 uint_fast32_t compute_cost_wrapper(const Tour& tour, const IntMatrix& dists);
+Tour find_tour_from_points(const IntMatrix points, int mode, const float duration_seconds);
 
+Tour find_tour_from_points(const IntMatrix points, int mode, const float duration_seconds) {
+    clock_t clock_begin = clock();
+    if (duration_seconds <= 0.0) throw std::invalid_argument("Duration must be strictly positive");
+
+    uint_fast16_t n = dists.size();
+    if (n < 2) throw std::invalid_argument("Need at least 2 points");
+    uint_fast16_t m = dists[0].size();
+    if (m != 2) throw std::invalid_argument(
+        "Points must be 2D but got ("
+        + std::to_string(n) + ", " + std::to_string(m)
+        + ")"
+    );
+
+    // calculate left triangel distance matrix
+    IntMatrix dist
+    dist.resize(n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            dx = points[i][0] - points[j][0];
+            dy = points[i][1] - points[j][1];
+            dist[i][j] = sqrt(dx*dx + dy*dy)
+        }
+    }
+
+    // dist = dists;
+    if (n <= EXACT_SOLUTION_THRESHOLD) return solve_tsp_exact(dists);
+
+    // Solve it
+    return local_search(dists, clock_begin, duration_seconds);
+
+}
 
 Tour find_tour(const IntMatrix dists, const float duration_seconds = DEFAULT_TIME_LIMIT) {
     clock_t clock_begin = clock();
