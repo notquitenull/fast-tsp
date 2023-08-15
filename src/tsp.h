@@ -12,7 +12,7 @@
 
 typedef std::vector<uint_fast16_t> Tour;
 typedef std::vector<std::vector<double> > DoubleMatrix;
-typedef std::vector<std::vecotr<int> > PointMatrix;
+typedef std::vector<std::vector<int> > PointMatrix;
 typedef std::vector<std::vector<uint_fast16_t> > IntMatrix;
 typedef std::pair<uint_fast32_t, uint_fast16_t> IntPair;
 typedef std::priority_queue<IntPair, std::vector<IntPair>, std::greater<IntPair> > PQ;
