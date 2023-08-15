@@ -49,9 +49,9 @@ Tour find_tour_from_points(const IntMatrix points, int mode, const float duratio
     clock_t clock_begin = clock();
     if (duration_seconds <= 0.0) throw std::invalid_argument("Duration must be strictly positive");
 
-    uint_fast16_t n = dists.size();
+    uint_fast16_t n = points.size();
     if (n < 2) throw std::invalid_argument("Need at least 2 points");
-    uint_fast16_t m = dists[0].size();
+    uint_fast16_t m = points[0].size();
     if (m != 2) throw std::invalid_argument(
         "Points must be 2D but got ("
         + std::to_string(n) + ", " + std::to_string(m)
@@ -59,13 +59,13 @@ Tour find_tour_from_points(const IntMatrix points, int mode, const float duratio
     );
 
     // calculate left triangel distance matrix
-    IntMatrix dist;
-    dist.resize(n);
+    IntMatrix dists;
+    dists.resize(n);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < i; j++) {
             float dx = points[i][0] - points[j][0];
             float dy = points[i][1] - points[j][1];
-            dist[i][j] = (uint_fast16_t)sqrt(dx*dx + dy*dy)
+            dists[i][j] = (uint_fast16_t)sqrt(dx*dx + dy*dy);
         }
     }
 
