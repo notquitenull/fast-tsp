@@ -59,7 +59,7 @@ Tour find_tour_from_points(const IntMatrix points, int mode, const float duratio
     );
 
     // calculate left triangel distance matrix
-    IntMatrix dist
+    IntMatrix dist;
     dist.resize(n);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < i; j++) {
