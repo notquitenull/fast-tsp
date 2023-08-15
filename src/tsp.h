@@ -12,6 +12,7 @@
 
 typedef std::vector<uint_fast16_t> Tour;
 typedef std::vector<std::vector<double> > DoubleMatrix;
+typedef std::vector<std::vecotr<int> > PointMatrix;
 typedef std::vector<std::vector<uint_fast16_t> > IntMatrix;
 typedef std::pair<uint_fast32_t, uint_fast16_t> IntPair;
 typedef std::priority_queue<IntPair, std::vector<IntPair>, std::greater<IntPair> > PQ;
@@ -43,9 +44,9 @@ void swap_adj_seg(uint_fast16_t n, Tour& tour, uint_fast16_t* position, uint_fas
 Tour greedy_nearest_neighbor(const IntMatrix& dist);
 uint_fast32_t compute_cost(uint_fast16_t n, const Tour& tour, const IntMatrix& dists);
 uint_fast32_t compute_cost_wrapper(const Tour& tour, const IntMatrix& dists);
-Tour find_tour_from_points(const IntMatrix points, int mode, const float duration_seconds);
+Tour find_tour_from_points(const PointMatrix points, int mode, const float duration_seconds);
 
-Tour find_tour_from_points(const IntMatrix points, int mode, const float duration_seconds) {
+Tour find_tour_from_points(const PointMatrix points, int mode, const float duration_seconds) {
     clock_t clock_begin = clock();
     if (duration_seconds <= 0.0) throw std::invalid_argument("Duration must be strictly positive");
 
