@@ -62,6 +62,7 @@ Tour find_tour_from_points(const IntMatrix points, int mode, const float duratio
     IntMatrix dists;
     dists.resize(n);
     for (int i = 0; i < n; i++) {
+        dists[i].resize(n);
         for (int j = 0; j < i; j++) {
             float dx = points[i][0] - points[j][0];
             float dy = points[i][1] - points[j][1];
