@@ -78,7 +78,7 @@ Tour find_tour_from_points(const PointMatrix points, int mode, const float durat
         for (int i = 0; i < n; i++) {
             dists[i].resize(n);
             for (int j = 0; j < i; j++) {
-                dists[i][j] = (uint_fast16_t) std::sqrt(std::pow(points[i][0] - points[j][0], 2), std::pow(points[i][1] - points[j][1], 2));
+                dists[i][j] = (uint_fast16_t) std::max(std::abs(points[i][0] - points[j][0]), std::abs(points[i][1] - points[j][1]));
                 if (j == 0) dists[i][j] = 0;
                 dists[j][i] = dists[i][j];
             }
@@ -89,7 +89,7 @@ Tour find_tour_from_points(const PointMatrix points, int mode, const float durat
         for (int i = 0; i < n; i++) {
             dists[i].resize(n);
             for (int j = 0; j < i; j++) {
-                dists[i][j] = (uint_fast16_t) std::sqrt(std::abs(points[i][0] - points[j][0]) std::abs(points[i][1] - points[j][1]));
+                dists[i][j] = (uint_fast16_t) std::round(std::sqrt(std::pow(points[i][0] - points[j][0], 2) + std::pow(points[i][1] - points[j][1], 2)));
                 if (j == 0) dists[i][j] = 0;
                 dists[j][i] = dists[i][j];
             }
