@@ -62,12 +62,46 @@ Tour find_tour_from_points(const PointMatrix points, int mode, const float durat
     // calculate left triangel distance matrix
     IntMatrix dists;
     dists.resize(n);
-    for (int i = 0; i < n; i++) {
-        dists[i].resize(n);
-        for (int j = 0; j < i; j++) {
-            dists[i][j] = (uint_fast16_t) std::max(std::abs(points[i][0] - points[j][0]), std::abs(points[i][1] - points[j][1]));
-            dists[j][i] = dists[i][j];
+    switch(mode) {
+    case 0:
+        for (int i = 0; i < n; i++) {
+            dists[i].resize(n);
+            for (int j = 0; j < i; j++) {
+                dists[i][j] = (uint_fast16_t) std::abs(points[i][0] - points[j][0]) + std::abs(points[i][1] - points[j][1]);
+                if (j == 0) dists[i][j] = 0;
+                dists[j][i] = dists[i][j];
+            }
         }
+        break;
+
+    case 1:
+        for (int i = 0; i < n; i++) {
+            dists[i].resize(n);
+            for (int j = 0; j < i; j++) {
+                dists[i][j] = (uint_fast16_t) std::sqrt(std::pow(points[i][0] - points[j][0], 2), std::pow(points[i][1] - points[j][1], 2));
+                if (j == 0) dists[i][j] = 0;
+                dists[j][i] = dists[i][j];
+            }
+        }
+        break;
+
+    case 2:
+        for (int i = 0; i < n; i++) {
+            dists[i].resize(n);
+            for (int j = 0; j < i; j++) {
+                dists[i][j] = (uint_fast16_t) std::sqrt(std::abs(points[i][0] - points[j][0]) std::abs(points[i][1] - points[j][1]));
+                if (j == 0) dists[i][j] = 0;
+                dists[j][i] = dists[i][j];
+            }
+        }
+        break;
+
+    default:
+        throw std::invalid_argument(
+            "Mode must be either 0, 1 or 2 but got ("
+            + std::to_string(mode)
+            + ")"
+        );
     }
 
     // dist = dists;

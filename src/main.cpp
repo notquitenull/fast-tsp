@@ -20,7 +20,7 @@ PYBIND11_MODULE(_core, m) {
     m.def("find_tour_from_points", &find_tour_from_points, R"pbdoc(
         Find a good TSP tour
 
-        Calculate distance matrix on the fly.
+        Calculate distance matrix on the fly, given one of three travel modes.
 
         Run a local solver to find a near-optimal TSP tour. For small
         problems, the exact solution is guaranteed to be returned.

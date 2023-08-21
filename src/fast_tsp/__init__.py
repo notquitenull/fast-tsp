@@ -116,7 +116,9 @@ def find_tour_from_points(points: PointMatrix, mode: int = 2, duration_seconds: 
 
     Args:
         points: A (n, 2) matrix of points.
-        mode: currently useless.
+        mode:   0: sequential travel distance (first x distnace then y distance, or vice-vers)
+                1: paralell travel distance (x and y start moving simultaneously with konstant speed X)
+                2: euclidean travel distance
         duration_seconds: The maximum duration of the tour.
 
     Returns:
