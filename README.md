@@ -8,13 +8,14 @@
 
 
 A library for computing near optimal solution to large instances of the TSP (Travelling Salesman Problem) fast using a local solver. The library is written in C++ and provides Python bindings.
+Forked from shmulvad/fast-tsp and extended to also accept a list of 2D points as an input.
 
 # Quickstart
 
 First install the library
 
 ```bash
-$ pip install fast-tsp
+$ pip install git+https://github.com/notquitenull/fast-tsp.git
 ```
 
 
@@ -30,6 +31,13 @@ dists = [
 ]
 tour = fast_tsp.find_tour(dists)
 print(tour)  # [0, 1, 3, 2]
+```
+Or on your list of 2D points:
+```python
+import fast_tsp
+points = [[0,0], [10,5], [7,3], [-1,3], [4,5]]
+tour = fast_tsp.find_tour_from_points(points)
+print(tour) # [0, 2, 1, 4, 3]
 ```
 
 ### Documentation
