@@ -43,6 +43,7 @@ print(tour) # [0, 2, 1, 4, 3]
 ### Documentation
 
 Documentation can be found at <https://fast-tsp.readthedocs.io/>.
+Does not contain any documentation for find_tour_from_points().
 
 You can build the documentation by `cd`ing to `docs/` and running `make clean && make html`.
 
