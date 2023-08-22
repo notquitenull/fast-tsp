@@ -17,6 +17,15 @@ PYBIND11_MODULE(_core, m) {
         problems, the exact solution is guaranteed to be returned.
     )pbdoc", py::arg("dists"), py::arg("duration_seconds") = DEFAULT_TIME_LIMIT);
 
+    m.def("find_tour_from_points" &find_tour_from_points, R"pbdoc(
+        Find a good TSP tour
+
+        Calculate distance matrix on the fly.
+
+        Run a local solver to find a near-optimal TSP tour. For small
+        problems, the exact solution is guaranteed to be returned.
+    )pbdoc", py::arg("points"), py::arg("mode") = 1, py::arg("duration_seconds") = DEFAULT_TIME_LIMIT);
+
     m.def("is_valid_tour", &is_valid_tour, R"pbdoc(
         Determine whether a tour is a valid TSP tour.
 

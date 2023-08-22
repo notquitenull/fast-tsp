@@ -41,6 +41,7 @@ from ._core import (  # type: ignore
 
 Tour = List[int]
 DistMatrix = Union[List[List[int]], np.ndarray]
+PointMatrix = Union[List[List[int]], np.ndarray]
 
 _UINT16_MAX = 2 ** 16 - 1
 
@@ -102,6 +103,35 @@ def is_valid_dist_matrix(dists: DistMatrix) -> str | None:
                 )
 
     return None
+
+
+def find_tour_from_points(points: PointMatrix, mode: int = 2, duration_seconds: float = 2.0) -> Tour:
+    """Find a tour using the fast heuristic.
+
+    Calculate the distance matrix on the fly.
+
+    Run a local solver to find a near-optimal TSP tour. For small
+    problems, the exact solution is returned.
+
+    Args:
+        points: A (n, 2) matrix of points.
+        mode: currently useless.
+        duration_seconds: The maximum duration of the tour.
+
+    Returns:
+        A tour that is ideally near-optimal.
+
+    .. code-block:: python
+
+      points = [[0, 1], [1, 0]]
+      mode = 0 (sequential travel)
+             1 (parallel travel)
+             2 (euclidian distance) [DEFAULT]
+      tour = fast_tsp.find_tour_from_points(points)
+      print(tour)
+      # [0, 1]
+    """
+    return __find_tour_from_points(points, mode, duration_seconds)
 
 
 def find_tour(dists: DistMatrix, duration_seconds: float = 2.0) -> Tour:
@@ -223,6 +253,7 @@ def score_tour(tour: Tour, dists: DistMatrix, opt_cost: int) -> float:
 
 __all__ = [
     '__version__',
+    'find_tour_from_points',
     'find_tour',
     'greedy_nearest_neighbor',
     'solve_tsp_exact',
