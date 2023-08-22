@@ -15,7 +15,7 @@ except ImportError:
 from setuptools import find_packages
 
 DIR = os.path.abspath(os.path.dirname(__file__))
-DESCRIPTION = "A fast TSP solver with Python bindings"
+DESCRIPTION = "A fork from shmulvad's fast TSP solver with Python bindings, which also accepts a list of 2D points as an input."
 
 # Import the README and use it as the long-description.
 try:
