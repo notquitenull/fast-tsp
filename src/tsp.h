@@ -12,7 +12,7 @@
 
 typedef std::vector<uint_fast16_t> Tour;
 typedef std::vector<std::vector<double> > DoubleMatrix;
-typedef std::vector<std::vector<int> > PointMatrix;
+typedef std::vector<std::vector<float> > PointMatrix;
 typedef std::vector<std::vector<uint_fast16_t> > IntMatrix;
 typedef std::pair<uint_fast32_t, uint_fast16_t> IntPair;
 typedef std::priority_queue<IntPair, std::vector<IntPair>, std::greater<IntPair> > PQ;
@@ -67,7 +67,7 @@ Tour find_tour_from_points(const PointMatrix points, int mode, const float durat
         for (int i = 0; i < n; i++) {
             dists[i].resize(n);
             for (int j = 0; j < i; j++) {
-                dists[i][j] = (uint_fast16_t) std::abs(points[i][0] - points[j][0]) + std::abs(points[i][1] - points[j][1]);
+                dists[i][j] = (uint_fast16_t) (std::abs(points[i][0] - points[j][0]) + std::abs(points[i][1] - points[j][1]) * 100;
                 dists[j][i] = dists[i][j];
             }
         }
@@ -77,7 +77,7 @@ Tour find_tour_from_points(const PointMatrix points, int mode, const float durat
         for (int i = 0; i < n; i++) {
             dists[i].resize(n);
             for (int j = 0; j < i; j++) {
-                dists[i][j] = (uint_fast16_t) std::max(std::abs(points[i][0] - points[j][0]), std::abs(points[i][1] - points[j][1]));
+                dists[i][j] = (uint_fast16_t) (std::max(std::abs(points[i][0] - points[j][0]), std::abs(points[i][1] - points[j][1]))) * 100;
                 dists[j][i] = dists[i][j];
             }
         }
@@ -87,7 +87,7 @@ Tour find_tour_from_points(const PointMatrix points, int mode, const float durat
         for (int i = 0; i < n; i++) {
             dists[i].resize(n);
             for (int j = 0; j < i; j++) {
-                dists[i][j] = (uint_fast16_t) std::round(std::sqrt(std::pow(points[i][0] - points[j][0], 2) + std::pow(points[i][1] - points[j][1], 2)));
+                dists[i][j] = (uint_fast16_t) std::sqrt(std::pow(points[i][0] - points[j][0], 2) + std::pow(points[i][1] - points[j][1], 2)) * 100;
                 dists[j][i] = dists[i][j];
             }
         }
