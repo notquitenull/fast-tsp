@@ -42,7 +42,7 @@ from ._core import (  # type: ignore
 
 Tour = List[int]
 DistMatrix = Union[List[List[int]], np.ndarray]
-PointMatrix = Union[List[List[int]], np.ndarray]
+PointMatrix = Union[List[List[float]], np.ndarray]
 
 _UINT16_MAX = 2 ** 16 - 1
 
@@ -109,7 +109,7 @@ def is_valid_dist_matrix(dists: DistMatrix) -> str | None:
 def find_tour_from_points(points: PointMatrix, mode: int = 2, duration_seconds: float = 2.0) -> Tour:
     """Find a tour using the fast heuristic.
 
-    Calculate the distance matrix on the fly.
+    Calculate the distance matrix on the fly, 2 decimal points of precison.
 
     Run a local solver to find a near-optimal TSP tour. For small
     problems, the exact solution is returned.
